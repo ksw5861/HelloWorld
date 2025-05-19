@@ -7,7 +7,57 @@ public class LoopExe {
 	// "가위(1)","바위(2)","보(3)"
 	// 1,2,3 <==> 가위(1), 바위(2), 보(3) , 종료(4)
 	public static void main(String[] args) {
-		game2();
+		game3();
+		// game1();
+		// game2();
+	}
+
+	public static void game3() {
+		System.out.println("1.가위 2.바위 3.보 4.종료 \n 입력>>");
+		Scanner scn = new Scanner(System.in);
+		int Me = Integer.parseInt(scn.nextLine());
+		int Computer = (int) ((Math.random() * 3) + 1);
+
+		while (true) {
+			if (Me == 4) {
+				System.out.println("종료");
+				break;
+			}
+			if (Me == Computer) {
+				System.out.println("ME : " + Me + "Com : " + Computer);
+				System.out.println("Draw");
+				continue;
+			}
+			if (Me == 1) {
+				if (Computer == 2) {
+					System.out.println("ME : " + Me + "Com : " + Computer);
+					System.out.println("You Lose");
+
+				} else {
+					System.out.println("ME : " + Me + "Com : " + Computer);
+					System.out.println("You Win");
+
+				}
+			}
+			if (Me == 2) {
+				if (Computer == 1) {
+					System.out.println("ME : " + Me + "Com : " + Computer);
+					System.out.println("You Win");
+				} else {
+					System.out.println("ME : " + Me + "Com : " + Computer);
+					System.out.println("You Lose");
+				}
+			}
+			if (Me == 3) {
+				if (Computer == 1) {
+					System.out.println("ME : " + Me + "Com : " + Computer);
+					System.out.println("You Lose");
+				} else {
+					System.out.println("ME : " + Me + "Com : " + Computer);
+					System.out.println("You Win");
+				}
+			}
+		}
 	}
 
 	// case별로 비교(가위, 바위, 보 의 각 경우에 이기는 경우와 지는 경우).
