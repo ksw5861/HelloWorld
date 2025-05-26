@@ -1,43 +1,37 @@
 package com.yedam;
-/*
- * main 실행클래스.
- */
+
+import java.util.Scanner;
+
 public class ObjectExe {
+
 	public static void main(String[] args) {
-			// 호출.
-//			Calendar show = new Calendar();
-//			show.showMonth();
-	}
-	public static int getSpace(int month) {
-		int space = 0;
-		if (month == 3) { // 3월
-			space = 6;
-		} else if (month == 4) { // 4월
-			space = 2;
-		} else if (month == 5) { // 5월
-			space = 4;
-		} else if (month == 7) { // 7월
-			space = 2;
-		}
-		return space;
-	} // end of getSpace.
-	
-	public static int getLastDate(int month) {
-		int lastDate = 31;
+		String msg = "";
+		int year = 0;
+		Scanner scn = new Scanner(System.in);
 
-		switch (month) {
-		case 2:
-			lastDate = 28;
-			break;
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			lastDate = 30;
-			break;
-		}
-		return lastDate;
+		// 년도를 입력받는데 quit를 입력하면 종료처리.
+		while (true) {
+			System.out.print("년도를 입력하세요>>> ");
+			msg = scn.nextLine();
+			try {
+				year = Integer.parseInt(msg);
+			} catch (NumberFormatException e) {
+				// 문자를 입력한 경우에 quit인지 확인해서 종료.
+				if (msg.equals("quit")) {
+					break;
+				}
+				System.out.println("년도를 입력하셔야 합니다~~");
+				continue;
+			}
+			// 년도를 판단해서 윤년/평년 구분 메세지출력.
+			if (Calendar.isLeapYear(year)) {
+				System.out.printf("%d년은 윤년입니다.\n", year);
+			} else {
+				System.out.printf("%d년은 평년입니다.\n", year);
+			}
+		} // end of while.
+		System.out.println("윤년계산 끝~~~");
+		scn.close();
+	} // end of main.
 
-	}
-	
 }

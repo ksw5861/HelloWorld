@@ -35,48 +35,64 @@ public class BoardExe {
 		boards[10] = new Board(20, "날씨가20 안좋습니다.", "오늘 기온이 30도가 넘어요", "김길동");
 	}
 
-	// 메소드.
-	void execute() {
-		boolean run = true;
-		// 아이디 입력.
-		while (run) {
-			System.out.println("아이디를 입력하세요>>");
+	boolean loginCheck() {
+		int cnt = 3;
+		while (true) {
+			System.out.printf("아이디를 입력하세요>> (남은기회: %d회)\n", cnt);
 			String uname = scn.nextLine();
 			// 비밀번호 입력.
 			System.out.println("비밀번호를 입력하세요>>");
-			String passwd = scn.nextLine();
-			// 로그인 성공하면..
-			if (!UserExe.login(uname, passwd)) {
-				System.out.println("아이디 또는 비밀번호를 확인하세요.");
+			String userPw = scn.nextLine();
+			// 로그인 실패하면..
+			if (!UserExe.login(uname, userPw)) {
+				cnt = cnt - 1;
+				System.out.printf("아이디 또는 비밀번호를 확인하세요.\n");
+				if (cnt == 0) {
+					System.out.println("3번 틀렸습니다. \n" + "프로그램을 종료합니다.");
+					return false;
+				}
 				continue;
-			}
-//			System.out.println("환영합니다!!");
-			break;
-		}
+			} // 실패
+			return true;
+			// 로그인 성공하면..
+		} // end of while.
+	} // end of loginCheck;
+
+	// 메소드.
+	void execute() {
+		boolean run = true;
+		if(!loginCheck()) {
+			return;
+		} 
+		// 아이디 입력.
 //		while (run) {
-//			for (int i = 0; i < 3; i++) {
-//				System.out.println("아이디를 입력하세요>>");
-//				String uname = scn.nextLine();
-//				// 비밀번호 입력.
-//				System.out.println("비밀번호를 입력하세요>>");
-//				String userPw = scn.nextLine();
-//				// 로그인 실패하면..
-//				int cnt = 3;
-//				if (!UserExe.login(uname, userPw)) {
-//					cnt--;
-//					System.out.printf("아이디 또는 비밀번호를 확인하세요.(남은기회: %d회)\n", cnt);
-//					continue;
-//				}
-//			}			
+//			System.out.println("아이디를 입력하세요>>");
+//			String uname = scn.nextLine();
+//			// 비밀번호 입력.
+//			System.out.println("비밀번호를 입력하세요>>");
+//			String passwd = scn.nextLine();
 //			// 로그인 성공하면..
+//			if (!UserExe.login(uname, passwd)) {
+//				System.out.println("아이디 또는 비밀번호를 확인하세요.");
+//				continue;
+//			}
+////			System.out.println("환영합니다!!");
 //			break;
 //		}
+
 		while (run) {
 			System.out.println("------------------------------------------------------------------------------");
 			System.out.println(" 1. 글 작성 | 2. 내용 수정 | 3. 글 삭제 | 4. 게시글 목록 | 5. 달력 보기 | 6. 게시판 종료 ");
 			System.out.println("------------------------------------------------------------------------------");
 			System.out.println("선택>> ");
-			int selectNo = Integer.parseInt(scn.nextLine());
+			// 문자를 숫자 변경 예외발생.
+			int selectNo = 0;
+			try {
+				selectNo = Integer.parseInt(scn.nextLine());
+			} catch (NumberFormatException e) {
+				System.out.println("숫자만 입력할 수 있습니다..");
+				continue;
+			}
 
 			switch (selectNo) {
 			case 1: // 추가. (addBoard)
@@ -92,7 +108,7 @@ public class BoardExe {
 				boardList();
 				break;
 			case 5:
-				showMonth();
+//				showMonth();
 				break;
 			case 6: // 종료.
 				System.out.println("게시판을 종료합니다.");
@@ -108,7 +124,7 @@ public class BoardExe {
 	// 기능. 글 작성(추가)
 	// "글번호를 입력하세요>>" 1
 	// "제목을 입력하세요>>" 오늘은 덥네요.
-	// "내용을 입력하세요>>" 오늘 기온이 30도가 넘습니다. 날씨 버그났네요
+	// "내용을 입력하세요>>" 오늘 기온이 30도가 넘습니다. 
 	// "작성자를 입력하세요>>" 홍길동
 	// "글 작성이 완료되었습니다." / "글 작성을 실패했습니다." 메세지 출력.
 
@@ -151,20 +167,32 @@ public class BoardExe {
 			}
 			// 상세보기.
 			System.out.println("=========================================================");
-			System.out.println("상세보기-글번호입력| 이전페이지(p) | 다음페이지(n) |메뉴로 이동(q)");
+			System.out.println("상세보기(i),글번호| 이전페이지(p) | 다음페이지(n) |메뉴로 이동(q)");
 			System.out.println("=========================================================");
 			String str = scn.nextLine();
 			// 메뉴, 상세
 			if (str.equals("q")) {
-				return;
+				break;
+//				return;
 			} else if (str.equals("n")) {
 				page++;
 			} else if (str.equals("p")) {
 				page--;
+				if(page == 0) {
+					System.out.println("첫 페이지입니다!");
+					break;
+				}
 			}
 
-			else {
-				int no = Integer.parseInt(str);
+			if(str.equals("i")){
+				System.out.println("글번호입력>>");
+				int no = 0;
+				try {
+					no = Integer.parseInt(scn.nextLine());
+				} catch (NumberFormatException e) {
+					System.out.println("숫자만 입력할 수 있습니다..");
+					continue;
+				}
 				// 배열에서 조회.
 				Board sboard = getBoard(no);
 				if (sboard == null) {
@@ -272,39 +300,6 @@ public class BoardExe {
 		}
 	} // end of sort.
 
-	static void showMonth() {
-		// Sun Mon Tue Wed Thu Fri Sat
-		// =============================
-		// 1 2 3
-		// 4 5 6 7 8 9 10
-		// 11 12 13 14 15 16 17
-		// ...
-		// =============================
-
-		int mon = 6; // 월 정보를 입력
-		// 요일
-		System.out.printf("          2025년  %d월        \n", mon);
-		System.out.println(" Sun Mon Tue Wed Thu Fri Sat");
-		System.out.println("=============================");
-
-		int space = ObjectExe.getSpace(mon);
-		int lastDate = ObjectExe.getLastDate(mon);
-
-		// 빈 공간
-		for (int s = 1; s <= space; s++) {
-			System.out.printf("%4s", " ");
-		}
-
-		// 날짜 출력
-		for (int day = 1; day <= 31; day++) {
-			System.out.printf("%4d", day); // %3d = __1
-			if ((day + space) % 7 == 0) {
-				System.out.println(); // 7일마다 엔터
-			}
-		}
-		System.out.println();
-		System.out.println("=============================");
-
-	}
+	
 
 } // end of class.
