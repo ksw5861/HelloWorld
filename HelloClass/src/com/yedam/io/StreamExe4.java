@@ -46,7 +46,7 @@ public class StreamExe4 {
 		}
 	}
 
-	static void serial() { // 객체 -> 출력스트림.
+	static void serial() { // 객체 -> 출력스트림. Object -> byte 직렬화.
 		List<Product> list = new ArrayList<>();
 		list.add(new Product("P001"));
 		list.add(new Product("P002"));
@@ -59,7 +59,7 @@ public class StreamExe4 {
 			oos.writeObject(list); // 객체 -> 기본
 			oos.close();
 			os.close();
-
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
