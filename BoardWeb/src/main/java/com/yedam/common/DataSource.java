@@ -15,9 +15,9 @@ public class DataSource {
 			inputStream = Resources.getResourceAsStream(resource);
 		} catch (IOException e) {
 			e.printStackTrace();
-			throw new RuntimeException("MyBatis SqlSessionFactory 생성 중 오류 발생", e);
 		}
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSessionFactory sqlSessionFactory //
+				= new SqlSessionFactoryBuilder().build(inputStream);
 		return sqlSessionFactory;
 	}
 }
