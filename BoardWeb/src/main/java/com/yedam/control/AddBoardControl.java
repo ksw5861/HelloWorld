@@ -25,7 +25,7 @@ public class AddBoardControl implements Control {
 		if (req.getMethod().equals("GET")) {
 
 			// WEB-INF/jsp/addBoard.jsp
-			req.getRequestDispatcher("WEB-INF/jsp/addBoard.jsp").forward(req, resp);
+			req.getRequestDispatcher("user/addBoard.tiles").forward(req, resp);
 
 		} else if (req.getMethod().equals("POST")) { // 등록.
 			// POST 요청.
@@ -45,7 +45,7 @@ public class AddBoardControl implements Control {
 			if (svc.registerBoard(board)) {
 				System.out.println("등록성공.");
 				// 목록페이지로 이동.
-				resp.sendRedirect("/BoardWeb/boardList.do");
+				resp.sendRedirect("boardList.do");
 			} else {
 				System.out.println("등록실패.");
 			}
