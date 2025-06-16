@@ -21,10 +21,10 @@ public class Apptest {
 		
 		
 		// 목록.
-		List<ReplyVO> list = svc.replyList(221);
-		for(ReplyVO reply:list) {
-			System.out.println(reply.toString());
-		}
+//		List<ReplyVO> list = svc.replyList(221);
+//		for(ReplyVO reply:list) {
+//			System.out.println(reply.toString());
+//		}
 		
 //		ReplyVO reply = svc.getReply(3);
 //		System.out.println(reply.toString());
