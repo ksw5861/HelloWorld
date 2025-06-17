@@ -15,6 +15,8 @@ import com.yedam.control.AddReplyControl;
 import com.yedam.control.AllControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.ChartControl;
+import com.yedam.control.ChartPageControl;
 import com.yedam.control.GetReplyControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
@@ -64,6 +66,8 @@ public class FrontController extends HttpServlet {
 		map.put("/getReply.do", new GetReplyControl()); // 단건조회.
 		map.put("/replyCount.do", new ReplyCountControl()); // 댓글건수.
 		map.put("/replyInfo.do", new ReplyInfoControl());
+		map.put("/chart.do", new ChartControl());
+		map.put("/chartpage.do", new ChartPageControl());
 
 	}
 
