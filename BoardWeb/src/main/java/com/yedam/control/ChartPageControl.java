@@ -16,8 +16,6 @@ public class ChartPageControl implements Control {
 		// WEB-INF/jsp/chart/chart.jsp
 		// chart/chart.tiles
 		req.getRequestDispatcher("chart/chart.tiles").forward(req, resp);
-		
-
 	}
 
 }

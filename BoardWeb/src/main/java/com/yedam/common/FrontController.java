@@ -11,12 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.control.AddBoardControl;
+import com.yedam.control.AddEventControl;
 import com.yedam.control.AddReplyControl;
 import com.yedam.control.AllControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.ChartControl;
 import com.yedam.control.ChartPageControl;
+import com.yedam.control.CheckControl;
+import com.yedam.control.EventListControl;
 import com.yedam.control.GetReplyControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
@@ -24,10 +27,12 @@ import com.yedam.control.LogoutControl;
 import com.yedam.control.MemberListControl;
 import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.RemoveBoardControl;
+import com.yedam.control.RemoveEventControl;
 import com.yedam.control.RemoveReplyControl;
 import com.yedam.control.ReplyCountControl;
 import com.yedam.control.ReplyInfoControl;
 import com.yedam.control.ReplyListControl;
+import com.yedam.control.SignUpControl;
 
 /*
  * M-V-Control역할.
@@ -54,6 +59,11 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new LoginFormControl()); // 화면.
 		map.put("/login.do", new LoginControl()); // id,pw 로그인처리.
 		map.put("/logout.do", new LogoutControl());
+		map.put("/signup.do", new SignUpControl());
+		map.put("/checkId.do", new CheckControl());
+		map.put("/checkPw.do", new CheckControl());
+		
+		
 		// 회원목록.
 		map.put("/memberList.do", new MemberListControl());
 		// 상품관련.
@@ -68,6 +78,12 @@ public class FrontController extends HttpServlet {
 		map.put("/replyInfo.do", new ReplyInfoControl());
 		map.put("/chart.do", new ChartControl());
 		map.put("/chartpage.do", new ChartPageControl());
+		
+		// 이벤트관련.
+		map.put("/eventList.do", new EventListControl()); // 이벤트 목록.
+		map.put("/addEvent.do", new AddEventControl()); // 이벤트 목록.
+		map.put("/removeEvent.do", new RemoveEventControl()); // 이벤트 목록.
+		
 
 	}
 

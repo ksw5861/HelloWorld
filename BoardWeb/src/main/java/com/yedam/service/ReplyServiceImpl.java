@@ -9,41 +9,39 @@ import com.yedam.mapper.ReplyMapper;
 import com.yedam.vo.ReplyVO;
 
 public class ReplyServiceImpl implements ReplyService {
-	
+
 	SqlSession sqlSession = DataSource.getInstance().openSession();
 	ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
-	
+
 	@Override
-	public List<ReplyVO> replyList(int bno, int page){
-		return mapper.selectList(bno, page);
-	}
-	
-	@Override
-	public boolean addReply(ReplyVO rno) {
-		int r = mapper.insertReply(rno); //추가?
-		if(r == 1) {
-			sqlSession.commit(); // 커밋.
+	public boolean addReply(ReplyVO rvo) {
+		// 댓글입력처리.
+		int r = mapper.insertReply(rvo);
+		if (r == 1) {
+			sqlSession.commit();
 			return true;
 		}
 		return false;
 	}
-	
-	
+
+	@Override
+	public List<ReplyVO> replyList(int bno, int page) {
+		// 댓글목록(원본글번호가 필요)
+		return mapper.selectList(bno, page);
+	}
+
 	@Override
 	public ReplyVO getReply(int rno) {
-		ReplyVO reply = mapper.selectReply(rno); // 댓글번호 -> 조회.
-		if(reply != null) {
-			sqlSession.commit(); //커밋
-		}
-		return reply;
+		// 단건조회
+		return mapper.selectReply(rno);
 	}
-	
+
 	@Override
 	public boolean removeReply(int rno) {
 		// 댓글삭제
 		int r = mapper.deleteReply(rno);
 		if (r == 1) {
-			sqlSession.commit();// 커밋처리.
+			sqlSession.commit();
 			return true;
 		}
 		return false;

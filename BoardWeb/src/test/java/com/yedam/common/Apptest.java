@@ -9,16 +9,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yedam.mapper.BoardMapper;
 
-public class Apptest {
-	public static void main(String[] args) {
-		SqlSession sqlSession = DataSource.getInstance().openSession();
-		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-		
-		List<Map> list = mapper.selectUserByCount();
-		
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		String json = gson.toJson(list);
-		
-		System.out.println(json);
-	}
-}
+//public class Apptest {
+//	public static void main(String[] args) {
+//		SqlSession sqlSession = DataSource.getInstance().openSession();
+//		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+//		
+//		List<Map> list = mapper.selectUserByCount();
+//		
+//		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//		String json = gson.toJson(list);
+//		
+//		System.out.println(json);
+//	}
+//}
