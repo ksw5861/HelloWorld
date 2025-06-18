@@ -10,4 +10,5 @@ public interface MemberService {
 	public List<MemberVO> memberList(String order);
 	// 회원등록.
 	public boolean addMember(MemberVO member);
+	public boolean getMemberInfo(String id);
 }

@@ -3,17 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>홈페이지에 잘왔습니다!!</title>
+<link href="css/styles.css" rel="stylesheet" />
+
 </head>
 <body>
-  <h3>Welcome My Home!!</h3>
-  <h3>김상우입니다</h3>
-  <a href="html/sample.html">Sample 페이지로 이동.</a><br>
-  <a href="servlet/boardList.serv">게시판목록이동</a>
-  <script>
-  let str = '%25EC%2597%25B0%25EC%258A%25B5';
-  str = decodeURI(str);
-  console.log(decodeURI(str))
-  
-  </script>
+	<h3>Welcome My Home!!</h3>
+	<h3>코로나19 센터정보</h3>
+	<select id="sido"></select>
+	<!-- <input id="centerName" type="text"> -->
+	<button class="btn btn-primary">search</button>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>센터ID</th>
+				<th>센터NAME</th>
+				<th>전화번호</th>
+			</tr>
+		</thead>
+		<tbody id="centerList">
+			
+		</tbody>
+	</table>
+	
+	<script type="module" src="js/covid.js"></script>
 </body>
 </html>

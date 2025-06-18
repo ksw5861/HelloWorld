@@ -16,10 +16,9 @@ public class CheckControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// id = user01
 		String user = req.getParameter("id");
-		user = req.getParameter("pw");
 		MemberService svc = new MemberServiceImpl();
 		if (svc.getMemberInfo(user)) {
-			resp.getWriter().print("{\"retCode\":\"Success\"}"); // {"retCode":"Success"}
+			resp.getWriter().print("{\"retCode\":\"Exist\"}"); // {"retCode":"Success"}
 		} else {
 			resp.getWriter().print("{\"retCode\":\"NotExist\"}");
 		}

@@ -61,7 +61,6 @@ public class FrontController extends HttpServlet {
 		map.put("/logout.do", new LogoutControl());
 		map.put("/signup.do", new SignUpControl());
 		map.put("/checkId.do", new CheckControl());
-		map.put("/checkPw.do", new CheckControl());
 		
 		
 		// 회원목록.
